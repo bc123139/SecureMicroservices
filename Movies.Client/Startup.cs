@@ -9,6 +9,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Movies.Client.ApiServices;
+using Microsoft.Net.Http.Headers;
+using Movies.Client.HttpHandlers;
+using System;
 
 namespace Movies.Client
 {
@@ -60,6 +63,16 @@ namespace Movies.Client
 
                    
                });
+
+            // 1 create an HttpClient used for accessing the Movies.API
+            services.AddTransient<AuthenticationDelegatingHandler>();
+
+            services.AddHttpClient("MovieAPIClient", client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:5010/"); // API GATEWAY URL
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
+            }).AddHttpMessageHandler<AuthenticationDelegatingHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
