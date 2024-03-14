@@ -57,7 +57,7 @@ namespace Movies.Client
                    //options.ClaimActions.DeleteClaim("auth_time");
                    //options.ClaimActions.MapUniqueJsonKey("role", "role");
 
-                   //options.Scope.Add("movieAPI");
+                   options.Scope.Add("movieAPI");
 
                    options.SaveTokens = true;
                    options.GetClaimsFromUserInfoEndpoint = true;
@@ -86,13 +86,13 @@ namespace Movies.Client
 
             services.AddHttpContextAccessor();
 
-            services.AddSingleton(new ClientCredentialsTokenRequest
-            {
-                Address = "https://localhost:5005/connect/token",
-                ClientId = "movieClient",
-                ClientSecret = "secret",
-                Scope = "movieAPI"
-            });
+            //services.AddSingleton(new ClientCredentialsTokenRequest
+            //{
+            //    Address = "https://localhost:5005/connect/token",
+            //    ClientId = "movieClient",
+            //    ClientSecret = "secret",
+            //    Scope = "movieAPI"
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
