@@ -47,8 +47,8 @@ namespace Movies.Client
 
                    options.Scope.Add("openid");
                    options.Scope.Add("profile");
-                   //options.Scope.Add("address");
-                   //options.Scope.Add("email");
+                   options.Scope.Add("address");
+                   options.Scope.Add("email");
                    //options.Scope.Add("roles");
 
                    //options.ClaimActions.DeleteClaim("sid");
